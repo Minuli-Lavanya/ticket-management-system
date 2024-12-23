@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TicketListComponent } from './ticket-list.component';
 
 const routes: Routes = [
-  { path: '', component: TicketListComponent }, // Default route for this module
+  { path: '', component: TicketListComponent }, 
 ];
 
 @NgModule({

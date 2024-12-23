@@ -31,7 +31,7 @@ export class TicketFormComponent implements OnInit {
   saveTicket() {
     if (this.isEditing) {
       this.ticketService
-        .updateTicket(this.ticketId || '', { name: this.ticketName }) // Add fallback for null
+        .updateTicket(this.ticketId || '', { name: this.ticketName }) 
         .subscribe(() => this.router.navigate(['/']));
     } else {
       this.ticketService

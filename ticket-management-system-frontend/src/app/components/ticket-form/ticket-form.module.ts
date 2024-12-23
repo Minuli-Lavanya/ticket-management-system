@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TicketFormComponent } from './ticket-form.component';
 
 const routes: Routes = [
-  { path: '', component: TicketFormComponent }, // Default route for this module
+  { path: '', component: TicketFormComponent },
 ];
 
 @NgModule({
