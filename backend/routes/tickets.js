@@ -94,4 +94,22 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// GET route to fetch a single ticket by ID
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params; 
+
+    const ticket = await Ticket.findOne({ _id: id });
+
+    if (!ticket) {
+      return res.status(404).json({ error: 'Ticket not found' });
+    }
+
+    res.status(200).json(ticket); 
+  } catch (error) {
+    console.error('Error fetching ticket:', error);
+    res.status(500).json({ error: 'Failed to fetch ticket' });
+  }
+});
+
 module.exports = router;

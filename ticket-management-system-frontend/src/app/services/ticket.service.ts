@@ -12,7 +12,8 @@ export class TicketService {
   }
 
   getTicket(id: string) {
-    return this.http.get<any>(`${this.baseUrl}/${id}`);
+    const encodedId = encodeURIComponent(id);
+    return this.http.get<any>(`${this.baseUrl}/${encodedId}`);
   }
 
   searchTickets(query: string) {

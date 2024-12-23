@@ -1,5 +1,5 @@
-<h2>{{ isEditing ? 'Edit Ticket ' + ticketId : 'Create a Ticket' }}</h2>
-<form (ngSubmit)="saveTicket()">
+<h2>{{ isEditing ? 'Editing Ticket ' + ticketId : 'Create a Ticket' }}</h2>
+<form #ticketForm="ngForm" (ngSubmit)="saveTicket()" novalidate>
   <div class="form-group">
     <label for="ticketName">Name</label>
     <input
@@ -8,10 +8,16 @@
       [(ngModel)]="ticketName"
       name="ticketName"
       class="form-control"
+      placeholder="Enter ticket name"
       required
+      #ticketNameField="ngModel"
     />
+    <div *ngIf="ticketNameField.touched && ticketNameField.invalid" class="text-danger">
+      <small>Ticket name is required.</small>
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary">
+  <button type="submit" class="btn btn-primary" [disabled]="ticketForm.invalid">
     {{ isEditing ? 'Edit' : 'Create' }}
   </button>
 </form>
+
