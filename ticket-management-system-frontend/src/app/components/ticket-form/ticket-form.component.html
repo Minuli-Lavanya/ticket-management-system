@@ -1,0 +1,17 @@
+<h2>{{ isEditing ? 'Edit Ticket #' + ticketId : 'Create a Ticket' }}</h2>
+<form (ngSubmit)="saveTicket()">
+  <div class="form-group">
+    <label for="ticketName">Name</label>
+    <input
+      id="ticketName"
+      type="text"
+      [(ngModel)]="ticketName"
+      name="ticketName"
+      class="form-control"
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">
+    {{ isEditing ? 'Edit' : 'Create' }}
+  </button>
+</form>
