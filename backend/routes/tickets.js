@@ -50,7 +50,17 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+// Delete Ticket
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Ticket.findByIdAndDelete(id);
 
+    res.status(200).json({ message: 'Ticket deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 module.exports = router;
 
