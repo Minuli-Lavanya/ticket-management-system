@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
+// Ticket Schema
 const ticketSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  _id: String, // Custom ID (like #1, #2) will be used as the primary key
+  name: String,
 });
 
 module.exports = mongoose.model('Ticket', ticketSchema);
+
