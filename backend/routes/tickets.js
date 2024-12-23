@@ -15,6 +15,16 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Get All Tickets
+router.get('/', async (req, res) => {
+  try {
+    const tickets = await Ticket.find().sort('_id');
+    res.status(200).json(tickets);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 
 module.exports = router;
