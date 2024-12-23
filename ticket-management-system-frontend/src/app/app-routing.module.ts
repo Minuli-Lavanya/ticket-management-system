@@ -1,12 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TicketListComponent } from './components/ticket-list/ticket-list.component';
-import { TicketFormComponent } from './components/ticket-form/ticket-form.component';
 
 const routes: Routes = [
-  { path: '', component: TicketListComponent },
-  { path: 'create', component: TicketFormComponent },
-  { path: 'edit/:id', component: TicketFormComponent },
+  { path: '', redirectTo: 'ticket-list', pathMatch: 'full' },
+  {
+    path: 'ticket-list',
+    loadChildren: () =>
+      import('./components/ticket-list/ticket-list.module').then(
+        (m) => m.TicketListModule
+      ),
+  },
+  {
+    path: 'ticket-form',
+    loadChildren: () =>
+      import('./components/ticket-form/ticket-form.module').then(
+        (m) => m.TicketFormModule
+      ),
+  },
+  {
+    path: 'ticket-form/:id',
+    loadChildren: () =>
+      import('./components/ticket-form/ticket-form.module').then(
+        (m) => m.TicketFormModule
+      ),
+  },
+  { path: '**', redirectTo: 'ticket-list' }, 
 ];
 
 @NgModule({
@@ -14,4 +32,3 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-

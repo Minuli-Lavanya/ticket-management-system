@@ -6,7 +6,7 @@
     [(ngModel)]="searchQuery"
     (keyup.enter)="searchTickets()"
   />
-  <a routerLink="/create" class="btn btn-primary">Create New Ticket</a>
+  <a routerLink="/ticket-form" class="btn btn-primary">Create New Ticket</a>
 </div>
 
 <table class="table">
@@ -22,7 +22,7 @@
       <td>{{ ticket._id }}</td>
       <td>{{ ticket.name }}</td>
       <td>
-        <button routerLink="/edit/{{ ticket._id }}" class="btn btn-info">Edit</button>
+        <button routerLink="/ticket-form/{{ ticket._id }}" class="btn btn-info">Edit</button>
         <button (click)="deleteTicket(ticket._id)" class="btn btn-danger">Delete</button>
       </td>
     </tr>
