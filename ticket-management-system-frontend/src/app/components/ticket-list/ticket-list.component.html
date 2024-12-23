@@ -1,0 +1,30 @@
+<div class="header">
+  <h2>Ticketmaster</h2>
+  <input
+    type="text"
+    placeholder="Search tickets by name"
+    [(ngModel)]="searchQuery"
+    (keyup.enter)="searchTickets()"
+  />
+  <a routerLink="/create" class="btn btn-primary">Create New Ticket</a>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ticket of tickets">
+      <td>{{ ticket._id }}</td>
+      <td>{{ ticket.name }}</td>
+      <td>
+        <button routerLink="/edit/{{ ticket._id }}" class="btn btn-info">Edit</button>
+        <button (click)="deleteTicket(ticket._id)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
