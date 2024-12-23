@@ -37,6 +37,19 @@ router.get('/search', async (req, res) => {
   }
 });
 
+// Edit Ticket
+router.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name } = req.body;
+    const updatedTicket = await Ticket.findByIdAndUpdate(id, { name }, { new: true });
+
+    res.status(200).json(updatedTicket);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 
 module.exports = router;
