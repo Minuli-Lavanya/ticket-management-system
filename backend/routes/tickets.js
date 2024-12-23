@@ -25,6 +25,18 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Search Tickets by Name
+router.get('/search', async (req, res) => {
+  try {
+    const { query } = req.query;
+    const tickets = await Ticket.find({ name: { $regex: query, $options: 'i' } });
+
+    res.status(200).json(tickets);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 
 module.exports = router;
