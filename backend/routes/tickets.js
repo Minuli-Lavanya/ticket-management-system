@@ -7,14 +7,13 @@ router.post('/', async (req, res) => {
   try {
     const { name } = req.body;
 
-    // Fetch the last ticket to determine the next customId
     const lastTicket = await Ticket.findOne().sort({ _id: -1 });
     const nextCustomId = lastTicket
-      ? `#${parseInt(lastTicket._id.slice(1)) + 1}` // Increment the last customId
-      : '#1'; // Start from #1 if no tickets exist
+      ? `#${parseInt(lastTicket._id.slice(1)) + 1}` 
+      : '#1'; 
 
     const ticket = new Ticket({
-      _id: nextCustomId, // Custom sequential ID as the primary key
+      _id: nextCustomId, 
       name,
     });
 
@@ -40,15 +39,14 @@ router.get('/', async (req, res) => {
 // Search tickets by name
 router.get('/search', async (req, res) => {
   try {
-    const { query } = req.query; // Extract the query parameter
+    const { query } = req.query; 
     if (!query) {
       return res.status(400).json({ error: 'Search query is required' });
     }
 
-    // Perform a case-insensitive regex search on the 'name' field
     const tickets = await Ticket.find({ name: { $regex: query, $options: 'i' } });
 
-    res.status(200).json(tickets); // Return matching tickets
+    res.status(200).json(tickets); 
   } catch (error) {
     console.error('Error searching tickets:', error);
     res.status(500).json({ error: 'Failed to search tickets' });
@@ -58,7 +56,7 @@ router.get('/search', async (req, res) => {
 // PUT route to edit a ticket
 router.put('/:id', async (req, res) => {
   try {
-    const { id } = req.params; // ID is the customId, e.g., "#1"
+    const { id } = req.params; 
     const { name } = req.body;
 
     const updatedTicket = await Ticket.findByIdAndUpdate(
@@ -81,7 +79,7 @@ router.put('/:id', async (req, res) => {
 // DELETE route to delete a ticket
 router.delete('/:id', async (req, res) => {
   try {
-    const { id } = req.params; // ID is the customId, e.g., "#1"
+    const { id } = req.params;
 
     const deletedTicket = await Ticket.findByIdAndDelete(id);
 
